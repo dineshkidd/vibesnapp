@@ -1,8 +1,18 @@
 import React from "react";
 
-const RegisterForm = ({ email, password, setEmail, setPassword, handleSubmit }) => {
+const RegisterForm = ({ email, password, setEmail, setPassword, handleSubmit, name, setName }) => {
   return (
     <form onSubmit={handleSubmit}>
+      <div className="mb-4">
+        <label className="block mb-2 font-medium text-sm">Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="px-4 py-2 border rounded w-full"
+          required
+        />
+      </div>
       <div className="mb-4">
         <label className="block mb-2 font-medium text-sm">Email</label>
         <input

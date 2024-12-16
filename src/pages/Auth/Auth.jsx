@@ -11,6 +11,7 @@ const Auth = () => {
   const { login, register, googleLogin } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +38,7 @@ const Auth = () => {
         await login(email, password);
         navigate("/"); // Redirect only if login is successful
       } else {
-        await register(email, password);
+        await register(email, password,name);
         alert("Registration successful. Please verify your email.");
         navigate("/login");
       }
@@ -94,6 +95,8 @@ const Auth = () => {
             setEmail={setEmail}
             setPassword={setPassword}
             handleSubmit={handleSubmit}
+            name={name}
+            setName={setName}
           />
         )}</div>)}
         {showResetPassword && (

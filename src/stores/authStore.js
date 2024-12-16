@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { auth } from "../services/firebase";
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -7,9 +6,13 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   createUserWithEmailAndPassword,
-  sendEmailVerification ,
-  sendPasswordResetEmail 
+  sendEmailVerification,
+  sendPasswordResetEmail,
 } from "firebase/auth";
+import { setDoc, doc, getDoc } from "firebase/firestore";
+import { auth } from "../services/firebase";
+import { db } from "../services/firestore";
+import { generateTag } from "../utils";
 
 export const useAuthStore = create((set) => ({
   user: null,
@@ -26,47 +29,98 @@ export const useAuthStore = create((set) => ({
   // Login with email and password
   login: async (email, password) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-  
+
       // Check if email is verified
       if (!user.emailVerified) {
         await signOut(auth); // Log out the user immediately
         // alert("Your email is not verified. Check your email for a verification link.");
-        throw new Error("Your email is not verified. Check your email for a verification link.");
+        throw new Error(
+          "Your email is not verified. Check your email for a verification link."
+        );
       }
-  
+
       // If verified, set the user in state
       set({ user });
     } catch (error) {
       console.error("Login Error:", error.message);
       throw new Error(error.message); // Pass the error back to the UI
     }
-  },  
+  },
 
   // Google login
   googleLogin: async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+
+      // Get user info from Google
+      const user = result.user;
+
+      const userDocRef = doc(db, "users", user.uid);
+
+      // Check if the user document already exists
+      const userDoc = await getDoc(userDocRef);
+
+      if (!userDoc.exists()) {
+
+      // Extract the data
+      const name = user.displayName || "Anonymous";
+      const email = user.email;
+      const pp = user.photoURL;
+
+      // Generate a custom user ID (e.g., Instagram-style)
+      const tag = generateTag(email);
+
+      // Store the user in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        pp,
+        banner: null,
+        bio: null,
+        tag: tag,
+      });
+    }
     } catch (error) {
       console.error("Google Login Error:", error.message);
     }
   },
 
-  register: async (email, password) => {
+  register: async (email, password, name) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-    // Send email verification
-    await sendEmailVerification(user);
+      // Send email verification
+      await sendEmailVerification(user);
 
-    // Log the user out
-    await signOut(auth);
+      const tag = generateTag(email);
 
-    // Return success message
-    return "Registration successful! Check your email to verify your account.";
+      // Add user to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        pp: null,
+        banner: null,
+        bio: null,
+        tag: tag,
+      });
+
+      // Log the user out
+      await signOut(auth);
+
+      // Return success message
+      return "Registration successful! Check your email to verify your account.";
     } catch (error) {
       throw new Error(error.message);
     }
@@ -94,4 +148,3 @@ export const useAuthStore = create((set) => ({
     }
   },
 }));
-
