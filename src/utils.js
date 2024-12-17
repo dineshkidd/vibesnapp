@@ -4,3 +4,6 @@ export function generateTag(email) {
     const tag = `${emailPrefix}${domainFirstLetter}`;
     return tag;
 }
+
+
+

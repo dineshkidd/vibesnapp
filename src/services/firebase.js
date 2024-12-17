@@ -13,4 +13,6 @@ const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+
+
 export { auth,app,analytics };

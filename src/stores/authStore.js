@@ -61,8 +61,9 @@ export const useAuthStore = create((set) => ({
 
       // Get user info from Google
       const user = result.user;
-
-      const userDocRef = doc(db, "users", user.uid);
+      const email = user.email;
+      const tag = generateTag(email);
+      const userDocRef = doc(db, "users", tag);
 
       // Check if the user document already exists
       const userDoc = await getDoc(userDocRef);
@@ -71,19 +72,20 @@ export const useAuthStore = create((set) => ({
 
       // Extract the data
       const name = user.displayName || "Anonymous";
-      const email = user.email;
+      
       const pp = user.photoURL;
 
       // Generate a custom user ID (e.g., Instagram-style)
-      const tag = generateTag(email);
+      
 
       // Store the user in Firestore
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users", tag), {
         name,
         email,
         pp,
         banner: null,
         bio: null,
+        userId: user.uid,
         tag: tag,
       });
     }
@@ -107,12 +109,13 @@ export const useAuthStore = create((set) => ({
       const tag = generateTag(email);
 
       // Add user to Firestore
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users", tag), {
         name,
         email,
         pp: null,
         banner: null,
         bio: null,
+        userId: user.uid,
         tag: tag,
       });
 

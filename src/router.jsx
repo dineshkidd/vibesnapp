@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <Feed />,
       },
       {
-        path: "/profile",
+        path: "/profile/:tag",
         element: <Profile />,
       },
     ],
