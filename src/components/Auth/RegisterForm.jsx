@@ -11,6 +11,7 @@ const RegisterForm = ({ email, password, setEmail, setPassword, handleSubmit, na
           onChange={(e) => setName(e.target.value)}
           className="px-4 py-2 border rounded w-full"
           required
+          maxLength="20"
         />
       </div>
       <div className="mb-4">

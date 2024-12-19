@@ -12,7 +12,7 @@ import {
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { auth } from "../services/firebase";
 import { db } from "../services/firestore";
-import { generateTag } from "../utils";
+import { generateTag } from "../utils/generate";
 
 export const useAuthStore = create((set) => ({
   user: null,

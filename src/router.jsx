@@ -1,8 +1,9 @@
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
-import Feed from "./pages/Feed/Feed";
-import Profile from "./pages/Profile/Profile";
+import Feed from "./pages/Feed";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./ProtectedRoute";
-import Auth from "./pages/Auth/Auth";
+import Auth from "./pages/Auth";
+import NewPost from "./pages/NewPost";
 import { useAuthStore } from "./stores/authStore"; // Import Zustand store
 import LoadingPage from "./pages/LoadingPage";
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/profile/:tag",
         element: <Profile />,
+      },
+      {
+        path: "/newpost",
+        element: <NewPost />,
       },
     ],
   },

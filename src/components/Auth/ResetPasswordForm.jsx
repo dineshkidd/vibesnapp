@@ -21,7 +21,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex justify-center items-center bg-gray-100">
-      <div className="bg-white shadow p-8 rounded w-full max-w-md">
+      <div className="bg-white rounded w-full max-w-md">
         {/* <h2 className="mb-6 font-bold text-2xl text-center">Reset Password</h2> */}
         {message && <div className="mb-4 text-green-600">{message}</div>}
         {error && <div className="mb-4 text-red-600">{error}</div>}
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
             type="submit"
             className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded w-full text-white"
           >
-            Send Reset Email
+            Send Password Reset Email
           </button>
         </form>
       </div>

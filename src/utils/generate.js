@@ -5,5 +5,6 @@ export function generateTag(email) {
     return tag;
 }
 
-
-
+export function generatePostId() {
+    return crypto.randomUUID();
+}

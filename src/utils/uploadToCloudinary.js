@@ -1,4 +1,4 @@
-export const uploadToCloudinary = async (file, folder = "user_profiles", preset) => {
+export const uploadToCloudinary = async (file, folder = "user_profiles", preset,type) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", preset); // Replace with your Cloudinary preset
@@ -6,7 +6,7 @@ export const uploadToCloudinary = async (file, folder = "user_profiles", preset)
 
   try {
     const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dtf74c9x7/image/upload",
+      `https://api.cloudinary.com/v1_1/dtf74c9x7/${type}/upload`,
       {
         method: "POST",
         body: formData,
@@ -14,7 +14,7 @@ export const uploadToCloudinary = async (file, folder = "user_profiles", preset)
     );
 
     if (!response.ok) {
-      throw new Error("Failed to upload image to Cloudinary");
+      throw new Error("Failed to upload media to Cloudinary");
     }
 
     const data = await response.json();
