@@ -29,9 +29,11 @@ const useCreatePost = () => {
         
         post.postMedia = postMediaUrl;
       }
+      
       if (tag) post.text = text;
       if (tag) post.tag = tag;
       if (userId) post.userId = userId;
+      if (type) post.type = type;
       post.timestamp = timestamp;
       post.liked = [];
 

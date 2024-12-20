@@ -1,5 +1,4 @@
 import { useState,useCallback ,useEffect,useRef} from 'react'
-import { Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
   Carousel,
@@ -7,6 +6,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import { useCarousel } from '../../hooks/useCarousel';
+import VideoPlayer from '@/components/ui/VideoPlayer'
 
 export default function NewPostCarousel({ images: initialImages, onDelete,setPostMedia ,type}) {
   const [images, setImages] = useState(initialImages)
@@ -58,11 +58,11 @@ export default function NewPostCarousel({ images: initialImages, onDelete,setPos
         >
           {type == 'image' && <CarouselContent>
             {images.map((image, index) => (
-              <CarouselItem key={index} className="relative ">
+              <CarouselItem key={index} className="relative  ">
                 <img
                   src={URL.createObjectURL(image)}
                   alt={`Carousel image ${index + 1}`}
-                  className="object-contain w-full h-72 rounded-lg bg-gray-300 "
+                  className="object-contain h-72 w-full rounded-lg bg-white"
                 />
               </CarouselItem>
             ))}
@@ -70,15 +70,11 @@ export default function NewPostCarousel({ images: initialImages, onDelete,setPos
           {type == 'video' && <CarouselContent>
             {images.map((image, index) => (
               <CarouselItem key={index} className="relative ">
-                <video
+                <VideoPlayer
                   src={URL.createObjectURL(image)}
                   alt={`Carousel image ${index + 1}`}
-                  className="object-contain w-full h-72 rounded-lg bg-gray-300"
-                  // controls
-                  autoPlay
-                  playsInline
-                  loop
-                  ref={videoRef}
+                  className="object-contain  h-72 bg-white"
+                  mutePosition="left"
                 />
 
               </CarouselItem>
@@ -87,16 +83,16 @@ export default function NewPostCarousel({ images: initialImages, onDelete,setPos
         </Carousel>
 
         {/* Static Numeric Indicator */}
-       <div className="absolute top-2 right-2 bg-white text-black px-2 py-1 rounded-full font-mono text-xs z-10">
+        {images.length > 1 && <div className="absolute top-3 right-3 bg-gray-50 text-black px-2 py-1 rounded-full font-mono text-xs z-10 border">
           {selectedIndex + 1}/{images.length}
-        </div>
+        </div>}
 
 
         {/* Static Delete Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="absolute bottom-2 right-2 h-8 w-8 bg-black/50 hover:bg-black/70 text-white rounded-full z-10"
+          className="absolute bottom-3 right-3 h-9 w-9 bg-black/70 hover:bg-black/70 text-white rounded-full z-10"
           onClick={() => handleDelete(selectedIndex)}
         >
           <img src="/delete.svg" className="h-4 w-4" />

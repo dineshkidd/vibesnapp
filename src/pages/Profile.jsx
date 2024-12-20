@@ -1,12 +1,12 @@
 import { useAuthStore } from "../stores/authStore";
 import { useUserInfo } from "../hooks/useUserInfo";
 import { useUpdateUserProfile } from "../hooks/useUpdateUserProfile";
-import { ArrowLeft, Pencil, Plus } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import LoadingPage from "./LoadingPage";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
+import { generateAvatarFallback } from "@/utils/generate";
 
 export default function Profile() {
   const { logout, user } = useAuthStore();
@@ -106,11 +106,11 @@ export default function Profile() {
           <img
             src={bannerUrl ? bannerUrl : "https://placehold.co/600x400/f0f0f0/f0f0f0"}
             alt="Header background"
-            className="brightness-75 rounded-b-2xl w-full h-full object-cover"
+            className="brightness-75 rounded-b-xl w-full h-full object-cover"
           />
           <div className="top-0 right-0 left-2 absolute flex items-center p-4">
             <div className="flex items-center text-white cursor-pointer">
-              <ArrowLeft className="mr-2 w-7 h-7" onClick={() =>{ 
+              <img src="/arrowLeft.svg" className="mr-2 w-8 h-8 hover:bg-black/50 rounded-full" onClick={() =>{ 
                 if(isEditing){
                   setIsEditing(false);
                 }
@@ -133,7 +133,7 @@ export default function Profile() {
                 className="bg-gray-100 p-2 rounded-full text-black"
                 onClick={handleBannerClick}
               >
-                <Pencil className="w-4 h-4" />
+                <img src="/edit.svg" className="w-4 h-4" />
               </button>
             </div>}
           </div>
@@ -143,11 +143,11 @@ export default function Profile() {
         <div className="-bottom-12 left-6 absolute">
           <div className="relative rounded-full">
             <Avatar className="w-28 h-28">
-              <AvatarImage src={ppUrl ? ppUrl : userProfile.pp} className="object-cover" />
-              <AvatarFallback>{userProfile.name.split(" ")[0][0]}</AvatarFallback>
+              <AvatarImage src={ppUrl} className="object-cover" />
+              <AvatarFallback>{generateAvatarFallback(userProfile.name)}</AvatarFallback>
             </Avatar>
             {userProfile.userId === user.uid && isEditing &&
-              <div className="top-28 right-0 absolute">
+              <div className="top-28 right-0 absolute w-full">
                 <input
                   type="file"
                   ref={ppInputRef}
@@ -159,7 +159,7 @@ export default function Profile() {
                   className="right-0 bottom-0 absolute bg-gray-100 p-2 rounded-full text-black"
                   onClick={handlePpClick}
                 >
-                  <Pencil className="w-4 h-4" />
+                  <img src="/edit.svg" className="w-4 h-4" />
                 </button></div>}
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function Profile() {
     <div className="mt-16 px-8">
       {!isEditing ?
         <div>
-          <h2 className="font-semibold text-3xl leading-none mb-1">{userProfile.name}</h2>
+          <h2 className="font-semibold text-2xl leading-none mb-1">{userProfile.name}</h2>
           <p className=" text-gray-500 text-xs leading-none">@{userProfile.tag}</p>
           <p className="mt-4 text-black text-sm break-words">{userProfile.bio}</p>
           <div className="mt-4">
@@ -200,8 +200,8 @@ export default function Profile() {
         </div>}
     </div>
 
-    {!isEditing && <div className="right-5 bottom-5 fixed flex bg-black px-3 py-3 rounded-full text-white cursor-pointer" onClick={() => navigate("/newpost")} >
-      <Plus className="w-7 h-7" strokeWidth={1.3} />
+    {!isEditing && <div className="right-5 bottom-5 fixed flex bg-black p-4 rounded-full text-white cursor-pointer" onClick={() => navigate("/newpost")} >
+      <img src="/plus.svg" className="w-5 h-5" />
     </div>}
 
 

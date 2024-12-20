@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Link } from "react-router"
+import { generateAvatarFallback } from "@/utils/generate"
 
 export default function Header({ userProfile, logout }) {
 
@@ -8,7 +9,7 @@ export default function Header({ userProfile, logout }) {
         <Link to={`/profile/${userProfile.tag}`} className="flex flex-row justify-center items-center space-x-2 cursor-pointer">
             <Avatar className="w-12 h-12">
                 <AvatarImage src={userProfile.pp} className="object-cover" />
-                <AvatarFallback>{userProfile.name.split(" ")[0][0]}</AvatarFallback>
+                <AvatarFallback>{generateAvatarFallback(userProfile.name)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col justify-center items-start mr-auto">
                 <h1 className="m-0 p-0 font-bold text-lg leading-none mb-1">{userProfile.name}</h1>

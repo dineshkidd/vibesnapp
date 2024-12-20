@@ -11,9 +11,7 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
       return;
     }
     //video length should be under 60 seconds
-    if (type == "video" && files[0].size > 50000000) {
-      
-      
+    if (type == "video" && files[0].size > 50000000) {  
       alert(`video should be under 50MB`);
       return;
     }
@@ -51,7 +49,7 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
         className="hidden"
         onChange={(e) => handleFileChange(e, "video", 1)}
       />
-      {true && <label
+      {isMobile && <label
         htmlFor="video-input"
         className="flex items-center space-x-2"
       >
@@ -90,7 +88,7 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
         htmlFor="file-input"
         className="flex items-center space-x-2 pl-0.5"
       >
-        <img src="./folder.svg" alt="Camera" className="w-6 h-6" />
+        <img src="./folder.svg" alt="file" className="w-6 h-6" />
         <div className="">Choose the file</div>
       </label>}
 

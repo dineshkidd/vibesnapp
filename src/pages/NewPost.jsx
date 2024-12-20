@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+
 import { isMobile } from "../lib/utils";
 import { useNavigate } from "react-router";
 import MediaPicker from '@/components/NewPost/MediaPicker';
@@ -38,9 +38,10 @@ export default function NewPost() {
         setPostMedia((prevMedia) => [...prevMedia, ...files]);
       };
 
-      const handleCreatePost = async (e) => {
-        setLoading("true");
+      const handleCreatePost = async (e) => { 
         // setMessage("");
+        if(contentRef.current.value.trim().length > 0 || postMedia.length > 0){
+          setLoading("true");
         try {
           await createPost({
             text:contentRef.current.value,
@@ -57,15 +58,15 @@ export default function NewPost() {
         } finally {
     
           setLoading(false);
-        }
+        }}
       };
 
       if(loading){return <LoadingPage loadingText="posting"/>}
 
     // const isMobile = true;
     return <div className="flex flex-col mx-auto p-4 max-w-screen-md">
-        <div className="flex flex-row items-center space-x-2 mb-4">
-            <ArrowLeft className="cursor-pointer" onClick={() => navigate(-1)} />
+        <div className="flex flex-row items-center space-x-2 mb-4 ">
+        <img src="/arrowLeftBlack.svg" className="mr-2 w-8 h-8 cursor-pointer hover:bg-black/50 rounded-full" onClick={() => navigate(-1)} />
             <h1 className="font-bold text-center text-xl">New Post</h1>
         </div>
 
@@ -87,7 +88,7 @@ export default function NewPost() {
             className="hidden"
         onChange={(e) => handleFileAdd(e, "image", postMedia.length > 0 ? 5 - postMedia.length : 5)}
         />
-        {postMedia.length > 0 && mediatype == 'image' && <label
+        {postMedia.length > 0 && postMedia.length < 4  && mediatype == 'image' && <label
             htmlFor="more-photo-input"
             className="flex items-center space-x-2 cursor-pointer"
         >
@@ -96,7 +97,7 @@ export default function NewPost() {
         </label>}
 
 
-        <textarea className="mt-2 bg-gray-300 px-2 py-4 border rounded-md w-full h-ful placeholder:text-gray-500 focus:outline-none resize-none" maxLength="150" rows={6} placeholder="What's on your mind?✨" ref={contentRef} />
+        <textarea className="mt-2 bg-gray-200 px-2 py-4 border rounded-md w-full h-ful placeholder:text-gray-500 focus:outline-none resize-none" maxLength="150" rows={6} placeholder="What's on your mind?✨" ref={contentRef} />
 
 
         {postMedia.length < 1 && <MediaPicker postMedia={postMedia} setPostMedia={setPostMedia} setMediaType={setMediaType} />}
