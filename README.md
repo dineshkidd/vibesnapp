@@ -1,15 +1,15 @@
 # Vibesnapp
 
 []()
-<img src="/assets/screenshots/Feed.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/NewPost.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/NewPostCarousel.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/NewPostVideo.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/Feed.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/NewPost.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/NewPostCarousel.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/NewPostVideo.PNG" style="height:400px;"/>
 <br>
-<img src="/assets/screenshots/PostPage.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/Profile.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/ProfileEdit.PNG?raw=true" style="height:200px;"/>
-<img src="/assets/screenshots/Login.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/PostPage.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/Profile.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/ProfileEdit.PNG" style="height:400px;"/>
+<img src="/assets/screenshots/Login.PNG" style="height:400px;"/>
 
 ## TechStack
 
