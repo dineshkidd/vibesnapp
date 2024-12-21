@@ -72,8 +72,13 @@ const Auth = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-gray-100 h-screen">
-      <div className="bg-white shadow p-8 rounded w-full max-w-md">
+    <div className="flex flex-col justify-center items-center bg-white h-screen">
+      <div className="flex items-center mb-4">
+        <img src="/logo.jpg" alt="logo" className="" />
+        <span className="text-3xl font-bold">VibeSnapp</span>
+      </div>
+      <p>Moments That Matter, Shared Forever.</p>
+      <div className="bg-white shadow-2xl px-8 py-6 rounded w-full max-w-md mt-6">
         <h2 className="mb-6 font-bold text-2xl text-center">
           {authTitle}
         </h2>

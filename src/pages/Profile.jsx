@@ -53,6 +53,45 @@ export default function Profile() {
     }
   };
 
+  const handleCopy = () => {
+    const currentURL = window.location.origin + '/profile/' + tag;
+
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(currentURL)
+        .then(() => {
+          alert('copied!');
+        })
+        .catch((err) => {
+          console.error('Failed to copy: ', err);
+          fallbackCopyTextToClipboard(currentURL);
+        });
+    } else {
+      fallbackCopyTextToClipboard(currentURL);
+    }
+  };
+
+  const fallbackCopyTextToClipboard = (text) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+      // textArea.remove();
+      alert('copied!');
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+      alert('Failed to copy URL', 'error');
+    }
+    textArea.remove();
+  };
+
   useEffect(() => {
     if (userProfile) {
       setName(userProfile.name);
@@ -170,7 +209,7 @@ export default function Profile() {
         </div>
 
         {/* Edit Profile Button */}
-        <div className="-bottom-12 left-36 absolute flex flex-row space-x-2">
+        <div className="-bottom-12 left-36  absolute flex flex-row space-x-2">
           {userProfile.userId === user.uid && !isEditing &&
             <button className="border-gray-400 bg-white hover:bg-gray-100 px-6 py-1.5 border rounded-full text-sm" onClick={() => setIsEditing(true)}>
               Edit Profile
@@ -178,9 +217,8 @@ export default function Profile() {
           {userProfile.userId === user.uid && !isEditing && <button onClick={logout} className="border-gray-400 bg-white hover:bg-gray-100 px-6 py-1.5 border rounded-full text-sm">
             Logout
           </button>}
-
-          {userProfile.userId !== user.uid && <button className="border-gray-400 bg-white hover:bg-gray-100 px-6 py-1.5 border rounded-full text-sm">
-            Add to friends
+          {userProfile.userId !== user.uid && <button className="border-gray-400 bg-white hover:bg-gray-100 px-6 py-1.5 border rounded-full text-sm" onClick={handleCopy}>
+           Copy Profile Url
           </button>}
         </div>
       </div>

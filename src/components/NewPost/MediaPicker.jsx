@@ -49,13 +49,13 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
         className="hidden"
         onChange={(e) => handleFileChange(e, "video", 1)}
       />
-      {isMobile && <label
+      <label
         htmlFor="video-input"
         className="flex items-center space-x-2"
       >
-        <img src="./video.svg" alt="Camera" className="w-7 h-7" />
+        <img src="./video.svg" alt="Video" className="w-7 h-7" />
         <div className="">Video</div>
-      </label>}
+      </label>
 
       {/* Hidden Input for Camera */}
       <input
@@ -81,7 +81,7 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
         accept="image/*"
         multiple
         max={4}
-        className="hidden pl-"
+        className="hidden"
         onChange={(e) => handleFileChange(e, "image", 4)}
       />
       {!isMobile && <label
@@ -89,7 +89,7 @@ const NewMediaPicker = ({setPostMedia,setMediaType}) => {
         className="flex items-center space-x-2 pl-0.5"
       >
         <img src="./folder.svg" alt="file" className="w-6 h-6" />
-        <div className="">Choose the file</div>
+        <div className="">Choose the image file</div>
       </label>}
 
       {/* Debug Output */}

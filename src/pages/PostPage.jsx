@@ -97,15 +97,14 @@ export default function PostPage() {
 
   return (
     <div className='max-w-lg   p-3  mx-auto mt-1'>
-      <div className=' flex justify-between items-center pb-3'>
+      <div className=' flex justify-between items-center pb-3 px-1'>
         <img src="/arrowLeftBlack.svg" className=" w-9 h-9 hover:bg-black/50 rounded-full cursor-pointer" onClick={() => {navigate(-1);}} />
-
         
-        <Link to={`/`} className="text-sm text-blue-500 underline">Go to Feed</Link>
+        <Link to={`/`} className="text-sm text-blue-500 underline">Go to Your Feed</Link>
 
       </div>
 
-      <div className="bg-gray-100 p-3 rounded-3xl" data-postid={postId}>
+      <div className="bg-gray-100 p-3 rounded-xl" data-postid={postId}>
         {/* Header */}
         <div className="flex items-center gap-2 mb-3">
           <Avatar className="w-12 h-12 border cursor-pointer" onClick={() => navigate(`/profile/${post.tag}`)}>
@@ -113,7 +112,7 @@ export default function PostPage() {
             <AvatarFallback>{generateAvatarFallback(userProfile?.name)}</AvatarFallback>
           </Avatar>
           <div>
-            <h2 className="font-medium leading-none">{userProfile?.name}</h2>
+            <Link to={`/profile/${post?.tag}`} className="font-medium leading-none hover:underline cursor-pointer">{userProfile?.name}</Link>
             <p className="text-xs text-gray-500">{generateTimeAgo(post?.timestamp)}</p>
           </div>
         </div>
@@ -132,7 +131,7 @@ export default function PostPage() {
                   key={index}
                   src={src}
                   alt={`Image ${index + 1}`}
-                  className="h-56 w-fit first:ml-0 last:mr-0 inline-block object-contain rounded-2xl"
+                  className="h-56 w-fit first:ml-0 last:mr-0 inline-block object-contain rounded-xl"
                 />
               ))}
             </div>
@@ -148,7 +147,7 @@ export default function PostPage() {
                 key={index}
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="w-full first:ml-0 last:mr-0 inline-block object-cover rounded-2xl"
+                className="w-full first:ml-0 last:mr-0 inline-block object-cover rounded-xl"
               />
             ))}
           </div>

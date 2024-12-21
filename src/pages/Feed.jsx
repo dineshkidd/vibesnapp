@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import React, { useState, useRef, useCallback } from "react";
 import Post from "../components/Feed/Post";
 import useFetchPosts from "../hooks/useFetchPosts";
+import LoadingPage from "./LoadingPage";
 
 export default function Feed() {
   const { logout, user } = useAuthStore();
@@ -37,6 +38,10 @@ export default function Feed() {
     },
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
+
+  if (isLoading) {
+    return <LoadingPage />; 
+  }
   return <div className="flex flex-col mx-auto p-4 max-w-screen-md">
     {isLoading ? "" : <Header className="justify-start" userProfile={userProfile} logout={logout} />}
     <div className="flex flex-row justify-between items-center pt-5">

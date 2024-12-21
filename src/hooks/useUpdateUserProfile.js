@@ -9,12 +9,12 @@ export const useUpdateUserProfile = () => {
       const updates = {};
       if (pp) {
         const compressedPP = await compressImage(pp,0.3,400);
-        const ppUrl = await uploadToCloudinary(compressedPP, "altersnap/profile/pp","profilepic","image");
+        const ppUrl = await uploadToCloudinary(compressedPP, import.meta.env.VITE_CLOUDINARY_FOLDER_PROFILE_PICTURE,import.meta.env.VITE_CLOUDINARY_PRESET_PROFILE_PICTURE,"image");
         updates.pp = ppUrl;
       }
       if (banner) {
         const compressedBanner = await compressImage(banner,0.7,1000);
-        const bannerUrl = await uploadToCloudinary(compressedBanner, "altersnap/profile/banner","banner","image");
+        const bannerUrl = await uploadToCloudinary(compressedBanner, import.meta.env.VITE_CLOUDINARY_FOLDER_BANNER,import.meta.env.VITE_CLOUDINARY_PRESET_BANNER,"image");
         updates.banner = bannerUrl;
       }
       if (name) updates.name = name;

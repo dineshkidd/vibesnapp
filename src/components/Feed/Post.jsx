@@ -4,7 +4,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { generateAvatarFallback, generateTimeAgo, generateTag } from '@/utils/generate'
 import { useUserInfo } from '@/hooks/useUserInfo'
-import { useNavigate } from 'react-router'
+import { useNavigate,Link } from 'react-router'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 import { useAuthStore } from "../../stores/authStore";
 import { useLikePost } from '@/hooks/useLikePost'
@@ -80,7 +80,7 @@ export default function Post({ post }) {
   if (isLoading) return null;
 
   return (
-    <div className="max-w-lg bg-gray-100 rounded-3xl p-3 mx-auto mt-3" data-postid={post.id}>
+    <div className="max-w-lg bg-gray-100 rounded-xl p-3 mx-auto mt-3" data-postid={post.id}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         <Avatar className="w-12 h-12 border cursor-pointer" onClick={() => navigate(`/profile/${post.tag}`)}>
@@ -88,7 +88,7 @@ export default function Post({ post }) {
           <AvatarFallback>{generateAvatarFallback(userProfile.name)}</AvatarFallback>
         </Avatar>
         <div>
-          <h2 className="font-medium leading-none">{userProfile.name}</h2>
+          <Link to={`/profile/${post.tag}`} className="font-medium leading-none hover:underline cursor-pointer mb-1">{userProfile.name}</Link>
           <p className="text-xs text-gray-500">{generateTimeAgo(post.timestamp)}</p>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default function Post({ post }) {
                 key={index}
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="h-56 w-fit first:ml-0 last:mr-0 inline-block object-contain rounded-2xl"
+                className="h-56 w-fit first:ml-0 last:mr-0 inline-block object-contain rounded-xl"
               />
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function Post({ post }) {
                 key={index}
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="w-full first:ml-0 last:mr-0 inline-block object-cover rounded-2xl"
+                className="w-full first:ml-0 last:mr-0 inline-block object-cover rounded-xl"
               />
             ))}
           </div>

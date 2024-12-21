@@ -73,7 +73,7 @@ const VideoPlayer = ({ src,className,mutePosition="right",showMuteButton = true 
   return (
     <div 
       ref={containerRef} 
-      className="relative w-full rounded-2xl overflow-hidden "
+      className="relative w-full rounded-xl overflow-hidden "
       onClick={togglePlayPause}
     >
       <video

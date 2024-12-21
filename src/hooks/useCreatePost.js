@@ -15,12 +15,12 @@ const useCreatePost = () => {
         for (let i=0; i< postMedia.length;i++){
         if(type == "image"){
           const compressedBanner = await compressImage(postMedia[i],0.4,1000);
-          const url = await uploadToCloudinary(compressedBanner, "altersnap/posts","userPosts",type);
+          const url = await uploadToCloudinary(compressedBanner, import.meta.env.VITE_CLOUDINARY_FOLDER_POST,import.meta.env.VITE_CLOUDINARY_PRESET_POST,type);
           postMediaUrl.push(url)
         }
         else{
           //write video compression logic here  
-          const url = await uploadToCloudinary(postMedia[0], "altersnap/posts","userPosts",type);
+          const url = await uploadToCloudinary(postMedia[0], import.meta.env.VITE_CLOUDINARY_FOLDER_POST,import.meta.env.VITE_CLOUDINARY_PRESET_POST,type);
           postMediaUrl.push(url)
 
         }
