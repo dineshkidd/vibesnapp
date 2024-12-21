@@ -1,27 +1,47 @@
 # Vibesnapp
 
+<img src="assets/screenshots/Feed.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/NewPost.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/NewPostCarousel.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/NewPostVideo.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/PostPage.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/Profile.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/ProfileEdit.png" alt="drawing" style="height:200px;"/>
+<img src="assets/screenshots/Login.png" alt="drawing" style="height:200px;"/>
+
+## TechStack
+
+- React
+- Tailwind
+- Firebase Authentication
+- FireStore DB
+- Cloudinary storage
+- Zustand state management
+- Tanstack Query
+- React Router
+
 ## Feature Checklist ✅
 
 ### User Authentication
-- [*] Verify that users can register, log in, and log out successfully.
-- [*] Ensure password reset functionality works as intended.
+- [x] Verify that users can register, log in, and log out successfully.
+- [x] Ensure password reset functionality works as intended.
 
 ### Social Media Feed
-- [*] Ensure the feed displays posts correctly, including text, images, and videos.
-- [*] Verify that timestamps are accurately shown.
+- [x] Ensure the feed displays posts correctly, including text, images, and videos.
+- [x] Verify that timestamps are accurately shown.
 
 ### Interactive Features
-- [*] Confirm smooth scrolling is implemented.
-- [*] Validate video rendering functionality.
-- [*] Check the ability to share posts.
+- [x] Confirm smooth scrolling is implemented.
+- [x] Validate video rendering functionality.
+- [x] Check the ability to share posts.
 
 ### Feed Creation
-- [*] Verify that users can create new posts, including uploading images and videos.
-- [*] Ensure these posts appear correctly in the feed.
+- [x] Verify that users can create new posts, including uploading images and videos.
+- [x] Ensure these posts appear correctly in the feed.
 
 ### User Profiles
-- [*] Ensure users can view and edit their profiles, including updating their bio, name, and profile picture.
-- [*] Validate that the "My Posts" section displays all posts created by the user.
+- [x] Ensure users can view and edit their profiles, including updating their bio, name, and profile picture.
+- [x] Validate that the "My Posts" section displays all posts created by the user.
 
 ### More Features I'm working on
 
