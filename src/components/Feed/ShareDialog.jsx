@@ -52,7 +52,7 @@ export default function ShareDialog({ url, setShowModal, handleCopy }) {
 
     return <div className="bg-white p-6 rounded-xl w-fit h-96">
         <div className="flex flex-row justify-between items-center">
-            <h1 className="text-2xl font-bold">Share post</h1>
+            <h1 className="text-2xl font-bold">Share Post</h1>
             <button onClick={() => setShowModal(false)} className="bg-gray-100 p-2 rounded-full">
                 <img src="/share/close.svg" className="w-5 h-5" />
             </button>
@@ -68,9 +68,9 @@ export default function ShareDialog({ url, setShowModal, handleCopy }) {
             </div>)}
         </div>
 
-        <h3 className="text-lg font-bold mt-6">Page link</h3>
+        <h3 className="text-lg font-bold mt-6">Post link</h3>
         <div className="w-full p-2 mt-2 rounded-md flex flex-row items-center bg-gray-100">
-            <span type="text" className="w-[95%] overflow-clip text-xs text-gray-500 mr-2 ">{url}</span>
+            <span type="text" className="w-[95%] overflow-clip text-xs text-gray-500 mx-2 ">{url}</span>
             <button onClick={handleCopy} className=" p-2 rounded-md"><img src="/share/copy.svg" className="w-5 h-5 right-4 top-4" /></button>
         </div>
     </div>

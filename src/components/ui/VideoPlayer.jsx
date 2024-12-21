@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, VolumeX, Volume2 } from 'lucide-react';
 
-const VideoPlayer = ({ src,className,mutePosition="right" }) => {
+const VideoPlayer = ({ src,className,mutePosition="right",showMuteButton = true }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
@@ -95,12 +95,12 @@ const VideoPlayer = ({ src,className,mutePosition="right" }) => {
           <Play className="w-12 h-12 text-white bg-black/50 p-3 rounded-full" />
         )}
       </div>
-      <button
+      {showMuteButton && <button
         onClick={toggleMute}
-        className={`absolute bottom-3 ${mutePosition}-4 bg-black/70 bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors duration-200`}
+        className={`absolute bottom-3 ${mutePosition}-4 bg-black/70 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors duration-200`}
       >
         {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-      </button>
+      </button>}
     </div>
   );
 };

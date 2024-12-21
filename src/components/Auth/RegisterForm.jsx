@@ -32,6 +32,8 @@ const RegisterForm = ({ email, password, setEmail, setPassword, handleSubmit, na
           onChange={(e) => setPassword(e.target.value)}
           className="px-4 py-2 border rounded w-full"
           required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  
         />
       </div>
       <button

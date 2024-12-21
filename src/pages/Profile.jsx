@@ -7,6 +7,7 @@ import LoadingPage from "./LoadingPage";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
 import { generateAvatarFallback } from "@/utils/generate";
+import ProfilePosts from "../components/Profile/ProfilePosts";
 
 export default function Profile() {
   const { logout, user } = useAuthStore();
@@ -71,6 +72,10 @@ export default function Profile() {
     e.preventDefault();
     setLoading(true);
     // setMessage("");
+    if (!name || !bio) {
+      // setMessage("Name and bio cannot be empty!");
+      setLoading(false);
+      return;}
     try {
       await updateProfile({
         tag,
@@ -108,9 +113,9 @@ export default function Profile() {
             alt="Header background"
             className="brightness-75 rounded-b-xl w-full h-full object-cover"
           />
-          <div className="top-0 right-0 left-2 absolute flex items-center p-4">
+          <div className="top-0 right-0 left-2 absolute flex items-center py-2">
             <div className="flex items-center text-white cursor-pointer">
-              <img src="/arrowLeft.svg" className="mr-2 w-8 h-8 hover:bg-black/50 rounded-full" onClick={() =>{ 
+              <img src="/arrowLeft.svg" className="mr-2 w-9 h-9 hover:bg-black/50 rounded-full" onClick={() =>{ 
                 if(isEditing){
                   setIsEditing(false);
                 }
@@ -140,9 +145,9 @@ export default function Profile() {
         </div>
 
         {/* Profile Picture */}
-        <div className="-bottom-12 left-6 absolute">
+        <div className="-bottom-14 left-4 absolute">
           <div className="relative rounded-full">
-            <Avatar className="w-28 h-28">
+            <Avatar className="w-32 h-32">
               <AvatarImage src={ppUrl} className="object-cover" />
               <AvatarFallback>{generateAvatarFallback(userProfile.name)}</AvatarFallback>
             </Avatar>
@@ -181,15 +186,15 @@ export default function Profile() {
       </div>
 
     </div>
-    <div className="mt-16 px-8">
+    <div className="mt-16 px-4">
       {!isEditing ?
-        <div>
+        <div className="w-full">
           <h2 className="font-semibold text-2xl leading-none mb-1">{userProfile.name}</h2>
           <p className=" text-gray-500 text-xs leading-none">@{userProfile.tag}</p>
           <p className="mt-4 text-black text-sm break-words">{userProfile.bio}</p>
-          <div className="mt-4">
+          <div className="mt-4 w-full">
             <h2 className="font-semibold text-xl">Posts</h2>
-            <div className="text-xl">Posts go here</div>
+            <ProfilePosts tag={tag} />
           </div>
         </div>
         : <div>
@@ -209,7 +214,7 @@ export default function Profile() {
       <button className="bg-white hover:bg-gray-100 mx-auto px-3 py-3 border border-black rounded-full w-full text-black text-center" onClick={() => setIsEditing(false)}>
         CANCEL
       </button>
-      <button className="bg-black hover:bg-gray-900 mx-auto px-3 py-3 rounded-full w-full text-center text-white" onClick={handleSave}>
+      <button className="enabled:bg-black enabled:cursor-pointer bg-gray-500 cursor-not-allowed mx-auto px-3 py-3 rounded-full w-full text-center text-white" onClick={handleSave} disabled={loading || name === "" || bio === ""}>
         SAVE
       </button>
     </div>}

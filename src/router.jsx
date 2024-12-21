@@ -6,6 +6,8 @@ import Auth from "./pages/Auth";
 import NewPost from "./pages/NewPost";
 import { useAuthStore } from "./stores/authStore"; // Import Zustand store
 import LoadingPage from "./pages/LoadingPage";
+import PostPage from "./pages/PostPage";
+import NotFound from "./pages/NotFound";
 
 const AuthRedirect = () => {
   const { user ,loading} = useAuthStore(); // Get user state from Zustand
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
         path: "/newpost",
         element: <NewPost />,
       },
+      {
+        path: "/post/:postId",
+        element: <PostPage />,
+      },
     ],
   },
   {
@@ -48,6 +54,10 @@ const router = createBrowserRouter([
     element: (
       <AuthRedirect />
     ),
+  },
+  {
+    path: "*",
+    element: <NotFound />, // Your 404 page component
   },
 ]);
 

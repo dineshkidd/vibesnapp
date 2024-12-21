@@ -8,14 +8,6 @@ import { useNavigate } from 'react-router'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 import { useAuthStore } from "../../stores/authStore";
 import { useLikePost } from '@/hooks/useLikePost'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import ShareDialog from './ShareDialog'
 
 export default function Post({ post }) {
@@ -47,7 +39,7 @@ export default function Post({ post }) {
   }, [showModal]);
 
   const handleCopy = () => {
-    const currentURL = window.location.origin + '/profile/'+post.tag;
+    const currentURL = window.location.origin + '/post/'+post.id;
 
 
     if (navigator.clipboard && window.isSecureContext) {
@@ -107,7 +99,7 @@ export default function Post({ post }) {
       </p>
 
       {/* Scrollable Image List */}
-      {type == "image" && images.length > 0 &&
+      {type == "image" && images.length > 1 &&
         <ScrollArea className="w-full whitespace-nowrap">
           <div className="flex gap-2">
             {images.map((src, index) => (
@@ -115,13 +107,27 @@ export default function Post({ post }) {
                 key={index}
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="h-48 w-fit first:ml-0 last:mr-0 inline-block object-cover rounded-2xl"
+                className="h-56 w-fit first:ml-0 last:mr-0 inline-block object-contain rounded-2xl"
               />
             ))}
           </div>
-          {images.length > 1 && <div className="h-2"></div>}
+          {images.length > 1 && <div className="h-3"></div>}
           {images.length > 1 && <ScrollBar orientation="horizontal" className="bg-gray-300 h-1 hover:h-1.5 rounded-full mx-28 opacity-90" />}
         </ScrollArea>}
+
+        {/* for single image post */}
+        {type == "image" && images.length == 1 &&
+          <div className="flex gap-2">
+            {images.map((src, index) => (
+              <img
+                key={index}
+                src={src}
+                alt={`Image ${index + 1}`}
+                className="w-full first:ml-0 last:mr-0 inline-block object-cover rounded-2xl"
+              />
+            ))}
+          </div>
+          }
 
       {/* video banner */}
       {type == "video" && images.length > 0 &&
@@ -134,7 +140,7 @@ export default function Post({ post }) {
       }
 
       {/* Actions */}
-      <div className={`flex items-center justify-between ${images.length > 1 ? 'mt-0' : 'mt-2'}`}>
+      <div className={`flex items-center justify-between ${images.length > 1 ? 'mt-1' : 'mt-3'}`}>
         <button
           onClick={handleLike}
           className="flex items-center gap-2"
@@ -159,7 +165,7 @@ export default function Post({ post }) {
           }
         }}
       >
-        <ShareDialog url={window.location.origin + '/profile/'+post.tag} setShowModal={setShowModal} handleCopy={handleCopy}/>
+        <ShareDialog url={window.location.origin + '/post/'+post.id} setShowModal={setShowModal} handleCopy={handleCopy}/>
 
       </div>)}
     </div>

@@ -40,7 +40,7 @@ export default function NewPost() {
 
       const handleCreatePost = async (e) => { 
         // setMessage("");
-        if(contentRef.current.value.trim().length > 0 || postMedia.length > 0){
+        if(postMedia.length > 0){
           setLoading("true");
         try {
           await createPost({
@@ -64,9 +64,9 @@ export default function NewPost() {
       if(loading){return <LoadingPage loadingText="posting"/>}
 
     // const isMobile = true;
-    return <div className="flex flex-col mx-auto p-4 max-w-screen-md">
+    return <div className="flex flex-col mx-auto p-2 max-w-screen-md">
         <div className="flex flex-row items-center space-x-2 mb-4 ">
-        <img src="/arrowLeftBlack.svg" className="mr-2 w-8 h-8 cursor-pointer hover:bg-black/50 rounded-full" onClick={() => navigate(-1)} />
+        <img src="/arrowLeftBlack.svg" className="mr-2 w-9 h-9 cursor-pointer hover:bg-black/50 rounded-full" onClick={() => navigate(-1)} />
             <h1 className="font-bold text-center text-xl">New Post</h1>
         </div>
 
@@ -106,7 +106,7 @@ export default function NewPost() {
             <button className="bg-white hover:bg-gray-100 mx-auto px-3 py-3 border border-black rounded-full w-full text-black text-center" onClick={() => navigate(-1)}>
                 CANCEL
             </button>
-            <button className="bg-black hover:bg-gray-900 mx-auto px-3 py-3 rounded-full w-full text-center text-white"  onClick={handleCreatePost} >
+            <button className="enabled:bg-black enabled:cursor-pointer bg-gray-500 cursor-not-allowed  mx-auto px-3 py-3 rounded-full w-full text-center text-white "  onClick={handleCreatePost} disabled={loading || postMedia.length < 1}>
                 CREATE
             </button>
         </div>
