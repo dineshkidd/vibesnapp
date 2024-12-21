@@ -1,13 +1,15 @@
 # Vibesnapp
 
-<img src="assets/screenshots/Feed.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/NewPost.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/NewPostCarousel.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/NewPostVideo.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/PostPage.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/Profile.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/ProfileEdit.png" alt="drawing" style="height:200px;"/>
-<img src="assets/screenshots/Login.png" alt="drawing" style="height:200px;"/>
+[]()
+<img src="/assets/screenshots/Feed.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/NewPost.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/NewPostCarousel.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/NewPostVideo.PNG?raw=true" style="height:200px;"/>
+<br>
+<img src="/assets/screenshots/PostPage.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/Profile.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/ProfileEdit.PNG?raw=true" style="height:200px;"/>
+<img src="/assets/screenshots/Login.PNG?raw=true" style="height:200px;"/>
 
 ## TechStack
 
@@ -45,7 +47,7 @@
 
 ### More Features I'm working on
 
-- [ ] Account Follwing
+- [ ] Account Following
 - [ ] Filter Feed by Recent, Popular, Following
 - [ ] Comment section
 - [ ] Client side Video compression
