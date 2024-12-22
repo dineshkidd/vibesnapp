@@ -28,7 +28,7 @@ export default function CommentBox({ comments, postId }) {
 
   };
   if(isLoading) return; 
-    return <div className="max-w-lg  mx-auto mt-1 ">
+    return <div className="max-w-lg  mx-auto mt-1 mb-20">
       <h2 className="font-bold text-lg">Comments</h2>
 
       {revArrComment.length>0 && <div className="pb-10">
