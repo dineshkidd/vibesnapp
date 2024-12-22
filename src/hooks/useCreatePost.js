@@ -35,7 +35,7 @@ const useCreatePost = () => {
       if (userId) post.userId = userId;
       if (type) post.type = type;
       post.timestamp = timestamp;
-      post.liked = [];b
+      post.liked = [];
       post.comments = [];
       // Save to Firestore
       const userDocRef = doc(db, "posts", postId);
