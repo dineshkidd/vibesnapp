@@ -42,7 +42,7 @@ export default function Feed() {
   if (isLoading) {
     return <LoadingPage />; 
   }
-  return <div className="flex flex-col mx-auto p-4 max-w-screen-md">
+  return <div className="flex flex-col mx-auto p-3 max-w-screen-md">
     {isLoading ? "" : <Header className="justify-start" userProfile={userProfile} logout={logout} />}
     <div className="flex flex-row justify-between items-center pt-5">
       <h1 className="font-bold text-2xl text-center">Feeds</h1>
