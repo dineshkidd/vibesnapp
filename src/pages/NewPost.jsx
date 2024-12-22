@@ -66,7 +66,7 @@ export default function NewPost() {
     // const isMobile = true;
     return <div className="flex flex-col mx-auto p-2 max-w-screen-md">
         <div className="flex flex-row items-center space-x-2 mb-4 ">
-        <img src="/arrowLeftBlack.svg" className="mr-2 w-9 h-9 cursor-pointer hover:bg-black/50 rounded-full" onClick={() => navigate(-1)} />
+        <img src="/arrowLeftBlack.svg" className="mr-2 w-9 h-9 cursor-pointer hover:bg-black/10 rounded-full" onClick={() => navigate(-1)} />
             <h1 className="font-bold text-center text-xl">New Post</h1>
         </div>
 

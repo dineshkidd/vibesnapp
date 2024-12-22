@@ -19,6 +19,7 @@ export default function Post({ post }) {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(post.liked.includes(tag))
   const [likeCount, setLikeCount] = useState(post.liked.length)
+  const [commentsCount, setCommentsCount] = useState(post.comments.length)
   const { toggleLike, isLoading: isLiking } = useLikePost(post.id, tag);
   const handleLike = () => {
     setLiked(!liked);
@@ -80,7 +81,7 @@ export default function Post({ post }) {
   if (isLoading) return null;
 
   return (
-    <div className="max-w-lg bg-gray-100 rounded-xl p-3 mx-auto mt-3" data-postid={post.id}>
+    <div className="max-w-lg bg-gray-100 rounded-xl p-3 mx-auto mt-3" data-post-id={post.id}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         <Avatar className="w-12 h-12 border cursor-pointer" onClick={() => navigate(`/profile/${post.tag}`)}>
@@ -141,6 +142,7 @@ export default function Post({ post }) {
 
       {/* Actions */}
       <div className={`flex items-center justify-between ${images.length > 1 ? 'mt-1' : 'mt-3'}`}>
+        <div className='flex gap-4 ml-1'>
         <button
           onClick={handleLike}
           className="flex items-center gap-2"
@@ -151,6 +153,11 @@ export default function Post({ post }) {
           />
           <span className={`${liked ? 'text-pink-500' : 'text-gray-600'}`}>{likeCount}</span>
         </button>
+        <button className="flex items-center gap-2" onClick={() => navigate(`/post/${post.id}`)}>
+          <img src="/comments.svg" className="w-7 h-7 opacity-85" />
+          <span className="text-gray-600">{commentsCount}</span>
+          </button>
+        </div>
         <button className="flex items-center gap-2 bg-gray-300 px-4 py-2 rounded-full" onClick={() => setShowModal(true)}>
           <img src="/share.svg" className="w-5 h-5" />
           <span className='text-sm'>Share</span>

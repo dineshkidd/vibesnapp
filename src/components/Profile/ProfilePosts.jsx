@@ -39,7 +39,7 @@ export default function ProfilePosts({ tag }) {
                                     {item?.text}
                                 </p>
                                 <div className="flex items-center text-white leading-non opacity-65">
-                                    <img src="/heart.svg" className="w-4 h-4 mr-1 " />
+                                    <img src="/heart.svg" className="w-5 h-5 mr-1 " />
                                     <span className=" leading-none">{item.liked.length}</span>
                                 </div>
                             </div>

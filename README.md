@@ -46,10 +46,9 @@
 - [x] Validate that the "My Posts" section displays all posts created by the user.
 
 ### More Features I'm working on
-
 - [ ] Account Following
 - [ ] Filter Feed by Recent, Popular, Following
-- [ ] Comment section
+- [x] Comment section
 - [ ] Client side Video compression
 - [ ] Delete posts
 

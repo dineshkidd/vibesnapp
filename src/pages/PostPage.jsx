@@ -11,6 +11,7 @@ import ShareDialog from '@/components/Feed/ShareDialog'
 import useFetchPostById from '@/hooks/UseFetchPostById'
 import { useParams, useNavigate,Link } from 'react-router'
 import LoadingPage from './LoadingPage'
+import Comments from '@/components/Post/CommentBox'
 
 export default function PostPage() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function PostPage() {
   const [images, setImages] = useState()
   const [type, setType] = useState()
   const [liked, setLiked] = useState()
+  const [commentsCount, setCommentsCount] = useState()
   const [likeCount, setLikeCount] = useState()
   const { data: userProfile, isLoading, error } = useUserInfo(post?.tag, { enabled: !!post });
   const { toggleLike, isLoading: isLiking } = useLikePost(post?.id, tag, { enabled: !!post });
@@ -31,6 +33,7 @@ export default function PostPage() {
       setType(post.type ? post.type : "image")
       setLiked(post.liked.includes(tag))
       setLikeCount(post.liked.length)
+      setCommentsCount(post.comments.length)
     }
   }, [post, isPostLoading])
 
@@ -98,7 +101,7 @@ export default function PostPage() {
   return (
     <div className='max-w-lg   p-3  mx-auto mt-1'>
       <div className=' flex justify-between items-center pb-3 px-1'>
-        <img src="/arrowLeftBlack.svg" className=" w-9 h-9 hover:bg-black/50 rounded-full cursor-pointer" onClick={() => {navigate(-1);}} />
+        <img src="/arrowLeftBlack.svg" className=" w-9 h-9 hover:bg-black/10 rounded-full cursor-pointer" onClick={() => {navigate(-1);}} />
         
         <Link to={`/`} className="text-sm text-blue-500 underline">Go to Your Feed</Link>
 
@@ -165,6 +168,7 @@ export default function PostPage() {
 
         {/* Actions */}
         <div className={`flex items-center justify-between ${images?.length > 1 ? 'mt-1' : 'mt-3'}`}>
+        <div className='flex gap-4 ml-1'>
           <button
             onClick={handleLike}
             className="flex items-center gap-2"
@@ -175,10 +179,15 @@ export default function PostPage() {
             />
             <span className={`${liked ? 'text-pink-500' : 'text-gray-600'}`}>{likeCount}</span>
           </button>
-          <button className="flex items-center gap-2 bg-gray-300 px-4 py-2 rounded-full" onClick={() => setShowModal(true)}>
+          <button className="flex items-center gap-2 cursor-auto">
+          <img src="/comments.svg" className="w-7 h-7 opacity-85" />
+          <span className="text-gray-600">{commentsCount}</span>
+          </button>
+        </div>
+          <p className="flex items-center gap-2 bg-gray-300 px-4 py-2 rounded-full" onClick={() => setShowModal(true)}>
             <img src="/share.svg" className="w-5 h-5" />
             <span className='text-sm'>Share</span>
-          </button>
+          </p>
         </div>
 
         {showModal && (<div
@@ -192,10 +201,9 @@ export default function PostPage() {
           <ShareDialog url={window.location.origin + '/post/' + post.id} setShowModal={setShowModal} handleCopy={handleCopy} />
 
         </div>)}
+        <Comments comments={post.comments} postId={post.id} />
       </div>
-      <div className='max-w-lg p-3 mx-auto mt-3 flex justify-center'>
-      {/* <Link to={`/`} className="text-sm text-blue-500 underline">Go to Feed</Link> */}
-      </div>
+      
     </div>
   )
 }
