@@ -8,6 +8,7 @@ export default function Comment({ comment }) {
         navigate("/profile/"+userProfile.tag)
     };
     const { data: userProfile, isLoading, error } = useUserInfo(comment.tag);
+    if(isLoading) return ;
     return <div className="flex items-center mx-2 space-x-2 my-5 max-w-lg" data-comment-id={comment?.id}>
         <Avatar className="w-8 h-8 cursor-pointer" onClick={handleProfileClick} >
             <AvatarImage src={userProfile?.pp} className="object-cover" />
